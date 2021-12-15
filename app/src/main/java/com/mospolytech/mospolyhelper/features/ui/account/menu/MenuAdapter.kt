@@ -38,7 +38,7 @@ class MenuAdapter(
                 container.setOnClickListener {
                     (onItemMenuClick as Action1).invoke(menuItem.itemId)
                 }
-                imageIcon.setImageDrawable(menuItem.icon)
+//                imageIcon.setImageDrawable(menuItem.icon)
                 textLabel.text = menuItem.title
             }
         }

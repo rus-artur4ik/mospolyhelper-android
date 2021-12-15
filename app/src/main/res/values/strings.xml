@@ -175,7 +175,7 @@ Github: https://github.com/alexanderdyndin
 
     <!-- Account -->
     <string name="auth">Авторизация</string>
-    <string name="info">Информация</string>
+    <string name="info">Персональная карточка</string>
     <string name="applications">Справки</string>
     <string name="Payments">Оплата</string>
     <string name="Students">Студенты</string>

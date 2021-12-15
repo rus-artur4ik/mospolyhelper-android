@@ -64,18 +64,18 @@ class MainActivity : AppCompatActivity(), KoinComponent, SharedPreferences.OnSha
         } else {
             viewModel.currentFragmentNavId.value = savedInstanceState.getInt("menuItemId", R.id.nav_schedule)
         }
-        if (viewModel.currentFragmentNavId.value != -1) {
-            viewBinding.navView.selectedItemId = viewModel.currentFragmentNavId.value
-        }
-        viewBinding.navView.setOnNavigationItemSelectedListener {
-            val action = navController.graph.getAction(it.itemId)
-            val currentDestination = navController.currentBackStackEntry?.destination
-            if (action != null && currentDestination != null && action.destinationId != currentDestination.id) {
-                viewModel.currentFragmentNavId.value = it.itemId
-                navController.navigate(it.itemId)
-            }
-            true
-        }
+//        if (viewModel.currentFragmentNavId.value != -1) {
+//            viewBinding.navView.selectedItemId = viewModel.currentFragmentNavId.value
+//        }
+//        viewBinding.navView.setOnNavigationItemSelectedListener {
+//            val action = navController.graph.getAction(it.itemId)
+//            val currentDestination = navController.currentBackStackEntry?.destination
+//            if (action != null && currentDestination != null && action.destinationId != currentDestination.id) {
+//                viewModel.currentFragmentNavId.value = it.itemId
+//                navController.navigate(it.itemId)
+//            }
+//            true
+//        }
 
         onBackPressedDispatcher.addCallback(this,
             object : OnBackPressedCallback(true) {

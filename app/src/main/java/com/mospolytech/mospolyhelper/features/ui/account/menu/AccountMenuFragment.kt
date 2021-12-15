@@ -10,6 +10,7 @@ import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
@@ -31,18 +32,18 @@ class AccountMenuFragment : Fragment(R.layout.fragment_menu_account) {
         val name = viewModel.getName()
         name?.let {
             viewBinding.textFio.text = it
-            Glide.with(this).load(viewModel.getAvatar()).circleCrop().into(viewBinding.avatarUser)
+//            Glide.with(this).load(viewModel.getAvatar()).circleCrop().into(viewBinding.avatarUser)
         } ?: let {
             viewBinding.textFio.text = requireContext().getText(R.string.account)
         }
-        viewBinding.avatarUser.isVisible = viewModel.getAvatar()?.isNotEmpty() == true
+//        viewBinding.avatarUser.isVisible = viewModel.getAvatar()?.isNotEmpty() == true
         menuList = viewBinding.listMenu
 
         setMenu(viewModel.getPermissions())
     }
 
     override fun onDestroyView() {
-        Glide.with(this).clear(viewBinding.avatarUser)
+//        Glide.with(this).clear(viewBinding.avatarUser)
         super.onDestroyView()
     }
 
@@ -50,10 +51,10 @@ class AccountMenuFragment : Fragment(R.layout.fragment_menu_account) {
         "dialogs" to R.id.nav_dialogs,
         "info" to R.id.nav_info,
         "payments" to R.id.nav_payments,
-        "marks" to R.id.nav_marks,
-        "grade-sheets" to R.id.nav_statements,
+//        "marks" to R.id.nav_marks,
+//        "grade-sheets" to R.id.nav_statements,
         "classmates" to R.id.nav_classmates,
-        "teachers" to R.id.nav_teachers,
+//        "teachers" to R.id.nav_teachers,
         "applications" to R.id.nav_applications,
 //        "myportfolio" to R.id.nav_deadlines,
 //        "students" to R.id.nav_students
@@ -87,16 +88,17 @@ class AccountMenuFragment : Fragment(R.layout.fragment_menu_account) {
 
     @SuppressLint("RestrictedApi")
     private fun setMenu(permissions: List<String>) {
-        menuList.layoutManager = GridLayoutManager(context, 2)
+        menuList.layoutManager = LinearLayoutManager(context)
         val menu = MenuBuilder(context)
         requireActivity().menuInflater.inflate(R.menu.menu_account, menu)
+
         val menuItems: MutableList<MenuItem> = mutableListOf()
         val itemMap = menu.iterator().asSequence().associateBy { it.itemId }
         menuItems.add(itemMap[R.id.nav_auth]!!)
         permissions.sortedWith(idNavComparator).forEach { permission ->
             idNavMap[permission]?.let { menuItems.add(itemMap[it]!!) }
         }
-        menuItems.add(menu.getItem(5))
+//        menuItems.add(menu.getItem(5))
         val adapter = MenuAdapter(menuItems)
         adapter.onItemMenuClick += {
             when (it) {
@@ -106,30 +108,30 @@ class AccountMenuFragment : Fragment(R.layout.fragment_menu_account) {
                             .actionAccountMenuFragmentToAuthFragment()
                     )
                 }
-                R.id.nav_students -> findNavController().safe {
-                    navigate(
-                        AccountMenuFragmentDirections
-                            .actionAccountMenuFragmentToStudentsFragment()
-                    )
-                }
+//                R.id.nav_students -> findNavController().safe {
+//                    navigate(
+//                        AccountMenuFragmentDirections
+//                            .actionAccountMenuFragmentToStudentsFragment()
+//                    )
+//                }
                 R.id.nav_info -> findNavController().safe {
                     navigate(
                         AccountMenuFragmentDirections
                             .actionAccountMenuFragmentToInfoFragment()
                     )
                 }
-                R.id.nav_marks -> findNavController().safe {
-                    navigate(
-                        AccountMenuFragmentDirections
-                            .actionAccountMenuFragmentToMarksFragment()
-                    )
-                }
-                R.id.nav_teachers -> findNavController().safe {
-                    navigate(
-                        AccountMenuFragmentDirections
-                            .actionAccountMenuFragmentToTeachersFragment()
-                    )
-                }
+//                R.id.nav_marks -> findNavController().safe {
+//                    navigate(
+//                        AccountMenuFragmentDirections
+//                            .actionAccountMenuFragmentToMarksFragment()
+//                    )
+//                }
+//                R.id.nav_teachers -> findNavController().safe {
+//                    navigate(
+//                        AccountMenuFragmentDirections
+//                            .actionAccountMenuFragmentToTeachersFragment()
+//                    )
+//                }
                 R.id.nav_classmates -> findNavController().safe {
                     navigate(
                         AccountMenuFragmentDirections
@@ -153,12 +155,12 @@ class AccountMenuFragment : Fragment(R.layout.fragment_menu_account) {
                         AccountMenuFragmentDirections
                             .actionAccountMenuFragmentToDeadlinesFragment())
                 }
-                R.id.nav_statements -> findNavController().safe {
-                    navigate(
-                        AccountMenuFragmentDirections
-                            .actionAccountMenuFragmentToStatementsFragment()
-                    )
-                }
+//                R.id.nav_statements -> findNavController().safe {
+//                    navigate(
+//                        AccountMenuFragmentDirections
+//                            .actionAccountMenuFragmentToStatementsFragment()
+//                    )
+//                }
                 R.id.nav_dialogs -> findNavController().safe {
                     navigate(
                         AccountMenuFragmentDirections
