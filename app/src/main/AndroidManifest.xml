@@ -12,9 +12,9 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_obshak"
+        android:label="HostelGo"
+        android:roundIcon="@mipmap/ic_launcher_obshak_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Splash">
         <activity android:name="com.mospolytech.mospolyhelper.features.ui.main.MainActivity">
