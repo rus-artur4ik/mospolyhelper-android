@@ -35,12 +35,6 @@ class InfoFragment : Fragment(R.layout.fragment_account_info) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewBinding.infoSwipe.setOnRefreshListener {
-            lifecycleScope.launch {
-                viewModel.downloadInfo()
-            }
-        }
-
         Glide.with(this).load(viewModel.getAvatar()).circleCrop().into(viewBinding.avatarStudent)
 
         lifecycleScope.launchWhenResumed {
@@ -53,12 +47,10 @@ class InfoFragment : Fragment(R.layout.fragment_account_info) {
                     }
                     is Result0.Failure -> {
                         viewBinding.progressLoading.gone()
-                        viewBinding.infoSwipe.isRefreshing = false
                         Toast.makeText(context, result.exception.localizedMessage, Toast.LENGTH_LONG).show()
                     }
                     is Result0.Loading -> {
-                        if (!viewBinding.infoSwipe.isRefreshing)
-                            viewBinding.progressLoading.show()
+
                     }
                 }
             }
@@ -71,11 +63,9 @@ class InfoFragment : Fragment(R.layout.fragment_account_info) {
                         viewBinding.progressLoading.gone()
                         viewBinding.infoLayout.show()
                         fillData(result.value)
-                        viewBinding.infoSwipe.isRefreshing = false
                     }
                     is Result0.Failure -> {
                         viewBinding.progressLoading.gone()
-                        viewBinding.infoSwipe.isRefreshing = false
                         when (val error = result.exception) {
                             is ClientRequestException -> {
                                 when (error.response.status.value) {
@@ -94,8 +84,7 @@ class InfoFragment : Fragment(R.layout.fragment_account_info) {
                         }
                     }
                     is Result0.Loading -> {
-                        if (!viewBinding.infoSwipe.isRefreshing)
-                            viewBinding.progressLoading.show()
+
                     }
                 }
             }
@@ -109,7 +98,6 @@ class InfoFragment : Fragment(R.layout.fragment_account_info) {
         viewBinding.infoStudent.text = information
         viewBinding.facultStudent.text = info.faculty
         viewBinding.directionStudent.text = info.direction
-        viewBinding.specStudent.text = info.specialization
         viewBinding.fioStudent.text = info.name
         viewBinding.paymentStudent.text = String.format(resources.getString(R.string.ed_form), info.financingType,
             info.educationForm.toLowerCase(Locale.ROOT))
@@ -119,7 +107,6 @@ class InfoFragment : Fragment(R.layout.fragment_account_info) {
                 requireContext().getString(R.string.apartment, info.dormitory, info.dormitoryRoom)
             viewBinding.apartmentStudent.show()
         }
-        viewBinding.orders.adapter = OrderAdapter(info.orders)
     }
 
     override fun onDestroyView() {
