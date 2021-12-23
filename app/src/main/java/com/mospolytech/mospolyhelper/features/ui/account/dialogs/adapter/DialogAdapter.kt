@@ -1,4 +1,4 @@
-package com.mospolytech.mospolyhelper.features.ui.account.dialogs.adapter
+/** package com.mospolytech.mospolyhelper.features.ui.account.dialogs.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -53,7 +53,7 @@ class DialogAdapter: RecyclerView.Adapter<DialogAdapter.DialogViewHolder>() {
 
         @SuppressLint("SetTextI18n")
         fun bind(item: DialogModel) {
-            with(viewBinding) {
+           with(viewBinding) {
                 when {
                     item.senderName.isNotEmpty() -> {
                         var name = item.senderName
@@ -135,3 +135,4 @@ class DialogAdapter: RecyclerView.Adapter<DialogAdapter.DialogViewHolder>() {
     }
 
 }
+ */

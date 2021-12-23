@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.mospolytech.mospolyhelper.R
 import com.mospolytech.mospolyhelper.databinding.FragmentAccountDialogsBinding
-import com.mospolytech.mospolyhelper.features.ui.account.dialogs.adapter.DialogAdapter
+/**import com.mospolytech.mospolyhelper.features.ui.account.dialogs.adapter.DialogAdapter */
 import com.mospolytech.mospolyhelper.features.ui.account.messaging.MessagingFragment.Companion.DIALOG_ID
 import com.mospolytech.mospolyhelper.features.ui.account.messaging.MessagingFragment.Companion.NAME
 import com.mospolytech.mospolyhelper.utils.*
@@ -25,15 +25,15 @@ class DialogsFragment: Fragment(R.layout.fragment_account_dialogs) {
     private val viewModel by viewModel<DialogsViewModel>()
     private val viewBinding by viewBinding(FragmentAccountDialogsBinding::bind)
 
-    private val adapter = DialogAdapter()
+  /**  private val adapter = DialogAdapter() */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        DialogAdapter.dialogClickListener = { id, name ->
+     /**   DialogAdapter.dialogClickListener = { id, name ->
             val data = bundleOf(DIALOG_ID to id, NAME to name)
             findNavController().navigate(R.id.action_dialogsFragment_to_messagingFragment, data)
-        }
+        } */
 
         lifecycleScope.launch {
             viewModel.getInfo()
@@ -43,7 +43,7 @@ class DialogsFragment: Fragment(R.layout.fragment_account_dialogs) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewBinding.recyclerDialogs.adapter = adapter
+      /**  viewBinding.recyclerDialogs.adapter = adapter */
         viewBinding.recyclerDialogs.itemAnimator = null
 
         lifecycleScope.launchWhenResumed {
@@ -73,7 +73,7 @@ class DialogsFragment: Fragment(R.layout.fragment_account_dialogs) {
                     is Result0.Success -> {
                         viewBinding.progressLoading.gone()
                         viewBinding.swipeDialogs.isRefreshing = false
-                        adapter.items = result.value
+                     /**   adapter.items = result.value */
                     }
                     is Result0.Failure -> {
                         viewBinding.progressLoading.gone()
@@ -110,10 +110,10 @@ class DialogsFragment: Fragment(R.layout.fragment_account_dialogs) {
         }
     }
 
-    override fun onDestroy() {
+  /**  override fun onDestroy() {
         DialogAdapter.dialogClickListener = null
         super.onDestroy()
-    }
+    } */
 
 
 }
