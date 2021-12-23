@@ -48,7 +48,7 @@ class AccountMenuFragment : Fragment(R.layout.fragment_menu_account) {
     }
 
     private val idNavMap = mapOf(
-        "dialogs" to R.id.nav_dialogs,
+//        "dialogs" to R.id.nav_dialogs,
         "info" to R.id.nav_info,
         "payments" to R.id.nav_payments,
 //        "marks" to R.id.nav_marks,
@@ -161,12 +161,12 @@ class AccountMenuFragment : Fragment(R.layout.fragment_menu_account) {
 //                            .actionAccountMenuFragmentToStatementsFragment()
 //                    )
 //                }
-                R.id.nav_dialogs -> findNavController().safe {
-                    navigate(
-                        AccountMenuFragmentDirections
-                            .actionAccountMenuFragmentToDialogsFragment()
-                    )
-                }
+//                R.id.nav_dialogs -> findNavController().safe {
+//                    navigate(
+//                        AccountMenuFragmentDirections
+//                            .actionAccountMenuFragmentToDialogsFragment()
+//                    )
+//                }
             }
         }
         menuList.adapter = adapter

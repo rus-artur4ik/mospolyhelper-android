@@ -36,7 +36,7 @@
   <color name="color_secondary">@color/blue</color>
   <color name="color_secondary_variant">#69e2ff</color>
 
-  <color name="color_background">@color/white3</color>
+  <color name="color_background">#000033</color>
   <color name="color_on_background">@color/color_high_emphasis</color>
   
   <color name="color_surface">@color/layerOne</color>
